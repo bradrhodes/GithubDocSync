@@ -3,7 +3,7 @@
 
 This page demonstrates a method of getting documentation from readme.md (or other docs) from github and displaying it in github pages in order to maintain documentation in only one place.
 
-This example uses JQuery.  For a no-JQuery version go [here](noJQuery.html).
+This is the markdown for the JQuery example. For the no-JQuery example markdown, see [joJQuery.md](https://github.com/bradrhodes/GithubDocSync/blob/master/noJQuery.md)
 
 ### Motivation
 
@@ -27,6 +27,35 @@ I'll describe how to do this with the readme.md file on Github but it should be 
    - You can get it from [Web Toolkit](http://www.webtoolkit.info/javascript-base64.html) or from the [javascripts](https://github.com/bradrhodes/GithubDocSync/tree/gh-pages/javascripts) directory of the `gh-pages` branch of GithubDocSync   
 - add `marked.js` to your `/javascripts` directory in your `gh-pages` branch
    - You can get it from the `/lib` directory of chjj's [marked](https://github.com/chjj/marked/tree/master/lib) project or from the [javascripts](https://github.com/bradrhodes/GithubDocSync/tree/gh-pages/javascripts) 
-- 
+- open `index.html` in an editor and add the following `<script>` references to the `<head>`
+```   
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="javascripts/base64.js"></script>
+<script src="javascripts/marked.js"></script>
+```
+- also in `index.html` add the following javascript to the `<head>` (replace githubApiUrl with the appropriate value for the file you want on Github)
+```
+<script type="text/javascript">
+	  var githubApiUrl = 'https://api.github.com/repos/bradrhodes/GithubDocSync/readme';
+	  var contentContainerId = "#readmeContent";
+	
+	  $.ajax({
+	    url: githubApiUrl,
+	    dataType: 'jsonp',
+	    success: function(response)
+	    {
+	      var encodedContent = response.data.content;
+	      var markdownText = Base64.decode(encodedContent);
+	      var renderedHtml = marked(markdownText);
+	
+	      $(contentContainerId).html(renderedHtml);
+	    }
+	  });
+</script>
+```
+- add a block-level container with id='#readmeContent'
+	- ex. `<div id="readmeContent"></div>`
+- save, add, commit and push all the changes to your `gh-pages` branch
+   
 
 

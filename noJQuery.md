@@ -3,6 +3,8 @@
 
 This page demonstrates a method of getting documentation from readme.md (or other docs) from github and displaying it in github pages in order to maintain documentation in only one place.
 
+This is the markdown for the plain Javascript example. For the JQuery example markdown, see [README.md](https://github.com/bradrhodes/GithubDocSync/blob/master/README.md)
+
 ### Motivation
 
 This is alternative method to those provided by coryg89's [Docsync](http://coryg89.github.io/docsync/) project and bebraw's [readme2gh](http://www.nixtu.info/2012/09/readme2gh-keeps-your-github-readmemd.html) project.
@@ -25,6 +27,35 @@ I'll describe how to do this with the readme.md file on Github but it should be 
    - You can get it from [Web Toolkit](http://www.webtoolkit.info/javascript-base64.html) or from the [javascripts](https://github.com/bradrhodes/GithubDocSync/tree/gh-pages/javascripts) directory of the `gh-pages` branch of GithubDocSync   
 - add `marked.js` to your `/javascripts` directory in your `gh-pages` branch
    - You can get it from the `/lib` directory of chjj's [marked](https://github.com/chjj/marked/tree/master/lib) project or from the [javascripts](https://github.com/bradrhodes/GithubDocSync/tree/gh-pages/javascripts) 
-- 
+- open `index.html` in an editor and add the following `<script>` references to the `<head>`
+```
+<script src="javascripts/base64.js"></script>
+<script src="javascripts/marked.js"></script>
+```
+- also in `index.html` add the following javascript to the `<head>` (replace githubApiUrl with the appropriate value for the file you want on Github)
+```
+<script type="text/javascript">
+      var githubApiUrl = 'https://api.github.com/repos/bradrhodes/GithubDocSync/contents/noJQuery.md';
+      var contentContainerId = "readmeContent";
+      var callbackFunctionName = "handleApiResponse";
+
+      function handleApiResponse(response)
+      {
+        var encodedContent = response.data.content;
+        var markdownText = Base64.decode(encodedContent);
+        var renderedHtml = marked(markdownText);
+
+        document.getElementById(contentContainerId).innerHTML = renderedHtml;
+      }
+
+      var newScript = document.createElement('script');
+      newScript.src = githubApiUrl + "?callback=" + callbackFunctionName;
+      document.getElementsByTagName('head')[0].appendChild(newScript);
+</script>
+```
+- add a block-level container with id='#readmeContent'
+	- ex. `<div id="readmeContent"></div>`
+- save, add, commit and push all the changes to your `gh-pages` branch
+   
 
 

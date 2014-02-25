@@ -8,9 +8,8 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/base64.js"></script>
-    <script src="javascripts/Markdown.Converter.js"></script>
-    <script src="javascripts/Markdown.Sanitizer.js"></script>
+    <script src="javascripts/base64-2.js"></script>
+    <script src="javascripts/marked.js"></script>
     <script type="text/javascript">
       var githubApiUrl = 'https://api.github.com/repos/bradrhodes/GithubDocSync/readme';
 
@@ -20,10 +19,9 @@
         success: function(response)
         {
           var encodedContent = response.data.content;
-          var markdownText = decode64(encodedContent);
-          var markdownRenderer = new Markdown.getSanitizingConverter().makeHtml;
+          var markdownText = Base64.decode(encodedContent);
+          var renderedHtml = marked(markdownText);
 
-          var renderedHtml = markdownRenderer(markdownText);
           $("#readmeContent").html(renderedHtml);
         }
       })

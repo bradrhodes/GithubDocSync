@@ -3,8 +3,6 @@
 
 This page demonstrates a method of getting documentation from readme.md (or other docs) from github and displaying it in github pages in order to maintain documentation in only one place.
 
-This example uses JQuery.  For a no-JQuery version go [here](noJQuery.html).
-
 ### Motivation
 
 This is alternative method to those provided by coryg89's [Docsync](http://coryg89.github.io/docsync/) project and bebraw's [readme2gh](http://www.nixtu.info/2012/09/readme2gh-keeps-your-github-readmemd.html) project.

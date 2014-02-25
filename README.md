@@ -1,7 +1,7 @@
 ## GithubDocSync
 
 
-This page demonstrates a method of getting documentation from readme.md (or other docs) from github and displaying it in github pages in order to maintain documentation in only one place.
+This page demonstrates a method of getting documentation from readme.md (or other docs) from github and displaying it in github pages in order to maintain documentation in only one place. This method uses Javascript and the Github API to fetch the content in the browser when the page loads.
 
 This is the markdown for the JQuery example. For the no-JQuery example markdown, see [joJQuery.md](https://github.com/bradrhodes/GithubDocSync/blob/master/noJQuery.md)
 
@@ -9,7 +9,7 @@ This is the markdown for the JQuery example. For the no-JQuery example markdown,
 
 This is alternative method to those provided by coryg89's [Docsync](http://coryg89.github.io/docsync/) project and bebraw's [readme2gh](http://www.nixtu.info/2012/09/readme2gh-keeps-your-github-readmemd.html) project.
 
-Both approaches are fine but coryg89's is dependent upon a bash script that is installed as a git hook. My problem with this is that if you make a quick change on github, rather than using a git client, your change won't be reflected on github pages. Bebraw's approach is dependent upon a Ruby script. 
+Both approaches are fine but coryg89's is dependent upon a bash script that is installed as a git hook. A problem with this is that if you make a quick change on github, rather than using a git client, your change won't be reflected on github pages. Bebraw's approach is dependent upon a Ruby script. 
 
 I wanted to take an approach that always worked, no matter how you change/update the documentation and one that didn't require any sort of out-of-band scripting or check-in policies, etc.
 

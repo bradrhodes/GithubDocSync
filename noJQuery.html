@@ -6,26 +6,26 @@
     <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />    
     <script src="javascripts/base64.js"></script>
     <script src="javascripts/marked.js"></script>
     <script type="text/javascript">
-      var githubApiUrl = 'https://api.github.com/repos/bradrhodes/GithubDocSync/readme';
-      var contentContainerId = "#readmeContent";
+      var githubApiUrl = 'https://api.github.com/repos/bradrhodes/GithubDocSync/contents/noJQuery.md';
+      var contentContainerId = "readmeContent";
+      var callbackFunctionName = "handleApiResponse";
 
-      $.ajax({
-        url: githubApiUrl,
-        dataType: 'jsonp',
-        success: function(response)
-        {
-          var encodedContent = response.data.content;
-          var markdownText = Base64.decode(encodedContent);
-          var renderedHtml = marked(markdownText);
+      function handleApiResponse(response)
+      {
+        var encodedContent = response.data.content;
+        var markdownText = Base64.decode(encodedContent);
+        var renderedHtml = marked(markdownText);
 
-          $(contentContainerId).html(renderedHtml);
-        }
-      });
+        document.getElementById(contentContainerId).innerHTML = renderedHtml;
+      }
+
+      var newScript = document.createElement('script');
+      newScript.src = githubApiUrl + "?callback=" + callbackFunctionName;
+      document.getElementsByTagName('head')[0].appendChild(newScript);
     </script>
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -38,7 +38,7 @@
       <div class="inner">
         <header>
           <h1>GithubDocSync</h1>
-          <h2>Note, this example uses JQuery. <a href="noJQuery.html">No-JQuery example</a>.</h2>
+          <h2>Note, this example uses plain Javascript. <a href="index.html">JQuery example</a>.</h2>
         </header>
 
         <section id="downloads" class="clearfix">

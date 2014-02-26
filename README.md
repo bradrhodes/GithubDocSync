@@ -28,13 +28,13 @@ I'll describe how to do this with the readme.md file on Github but it should be 
 - add `marked.js` to your `/javascripts` directory in your `gh-pages` branch
    - You can get it from the `/lib` directory of chjj's [marked](https://github.com/chjj/marked/tree/master/lib) project or from the [javascripts](https://github.com/bradrhodes/GithubDocSync/tree/gh-pages/javascripts) 
 - open `index.html` in an editor and add the following `<script>` references to the `<head>`
-```   
+```html   
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="javascripts/base64.js"></script>
 <script src="javascripts/marked.js"></script>
 ```
 - also in `index.html` add the following javascript to the `<head>` (replace githubApiUrl with the appropriate value for the file you want on Github)
-```
+```javascript
 <script type="text/javascript">
 	  var githubApiUrl = 'https://api.github.com/repos/bradrhodes/GithubDocSync/readme';
 	  var contentContainerId = "#readmeContent";

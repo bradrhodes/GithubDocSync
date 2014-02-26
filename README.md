@@ -34,7 +34,7 @@ I'll describe how to do this with the readme.md file on Github but it should be 
 <script src="javascripts/marked.js"></script>
 ```
 - also in `index.html` add the following javascript to the `<head>` (replace githubApiUrl with the appropriate value for the file you want on Github)
-```html+javascript
+```html
 <script type="text/javascript">
 	  var githubApiUrl = 'https://api.github.com/repos/bradrhodes/GithubDocSync/readme';
 	  var contentContainerId = "#readmeContent";

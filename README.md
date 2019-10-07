@@ -17,7 +17,7 @@ I'll describe how to do this with the readme.md file on Github but it should be 
 
 ### Basic Proces
 
-1. Use the Github API and JSONP to fetch the reade.md from Github.
+1. Use the Github API and JSONP to fetch the readme.md from Github.
 2. Decode the base64 content in the response from Github API.
 3. Parse/Render the markdown to HTML
 4. Display the rendered HTML
@@ -36,7 +36,7 @@ I'll describe how to do this with the readme.md file on Github but it should be 
 - also in `index.html` add the following javascript to the `<head>` (replace githubApiUrl with the appropriate value for the file you want on Github)
 ```html
 <script type="text/javascript">
-	  var githubApiUrl = 'https://api.github.com/repos/bradrhodes/GithubDocSync/readme';
+	  var githubApiUrl = 'https://api.github.com/repos/bradrhodes/GithubDocSync/contents/README.md';
 	  var contentContainerId = "#readmeContent";
 	
 	  $.ajax({
